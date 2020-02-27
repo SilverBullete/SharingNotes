@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 try:
-    from .local_settings import LOCAL_APP_CODE, LOCAL_SECRET_KEY, LOCAL_DATABASE
+    from .local_settings import LOCAL_APP_CODE, LOCAL_SECRET_KEY, LOCAL_DATABASE, POOL
 except ImportError:
     LOCAL_SECRET_KEY = ''
     LOCAL_APP_CODE = ''
@@ -26,6 +26,7 @@ except ImportError:
             'post': 3306,
         },
     }
+    POOL = None
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

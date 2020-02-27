@@ -2,6 +2,7 @@ import json
 import logging
 import redis
 
+
 from json import JSONDecodeError
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST, require_GET
