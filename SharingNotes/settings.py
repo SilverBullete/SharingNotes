@@ -11,7 +11,21 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from .local_settings import MY_SECRET_KEY
+try:
+    from .local_settings import LOCAL_APP_CODE, LOCAL_SECRET_KEY, LOCAL_DATABASE
+except ImportError:
+    LOCAL_SECRET_KEY = ''
+    LOCAL_APP_CODE = ''
+    LOCAL_DATABASE = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': LOCAL_APP_CODE,
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'post': 3306,
+        },
+    }
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +34,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = MY_SECRET_KEY
+SECRET_KEY = LOCAL_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,16 +88,7 @@ WSGI_APPLICATION = 'SharingNotes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sharingnote',
-        'USER': 'root',
-        'PASSWORD': '1256819071',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
+DATABASES = LOCAL_DATABASE
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
