@@ -3,7 +3,7 @@ chardet==3.0.4
 Django==2.0.3
 django-haystack==2.8.1
 django-redis==4.10.0
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 idna==2.8
 jieba==0.39
 PyMySQL==0.9.3
